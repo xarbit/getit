@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainMenu.qml</file>
+        <file>FormDataElement.qml</file>
+        <file>KeyValueContainer.qml</file>
+        <file>RequestPages.qml</file>
+        <file>MainToolbar.qml</file>
+        <file>KeyValuePair.qml</file>
+        <file>ResponsePage.qml</file>
+        <file>CenterTextMessage.qml</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>getit-delete-symbolic.svg</file>
+    </qresource>
+</RCC>
