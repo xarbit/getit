@@ -2,8 +2,10 @@
 
 #include <string>
 
-namespace Domain {
-    class ICookie {
+namespace Domain
+{
+    class ICookie
+    {
         public:
             virtual ~ICookie() = default;
 

@@ -2,15 +2,18 @@
 
 #include <string>
 
-#include "domain/IResponse.hpp"
+#include "domain/responses/IResponse.hpp"
 
-namespace Domain {
-    namespace Factories {
-        class IResponseFactory {
+namespace Domain
+{
+    namespace Factories
+    {
+        class IResponseFactory
+        {
             public:
                 virtual ~IResponseFactory() = default;
 
-                virtual Domain::IResponse getResponse(std::string responseType) = 0;
+                virtual Domain::Responses::IResponse* getResponse(std::string responseType) = 0;
         };
     }
 }

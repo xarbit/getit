@@ -3,9 +3,12 @@
 #include <exception>
 #include <string>
 
-namespace Domain {
-    namespace Exceptions {
-        class ResponseNotSupportedException: public std::exception {
+namespace Domain
+{
+    namespace Exceptions
+    {
+        class ResponseNotSupportedException: public std::exception
+        {
 
             public:
                 explicit ResponseNotSupportedException(std::string responseType);

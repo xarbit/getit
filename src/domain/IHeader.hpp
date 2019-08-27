@@ -2,8 +2,10 @@
 
 #include <string>
 
-namespace Domain {
-    class IHeader {
+namespace Domain
+{
+    class IHeader
+    {
         public:
             virtual ~IHeader() = default;
 
