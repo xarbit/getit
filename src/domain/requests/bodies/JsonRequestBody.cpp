@@ -4,7 +4,7 @@
 
 using namespace Domain::Requests;
 
-JsonRequestBody::JsonRequestBody(std::list<std::pair<std::string, std::string>> jsonKeys):
+JsonRequestBody::JsonRequestBody(std::map<std::string, std::string> jsonKeys):
     jsonKeys(jsonKeys)
 {
 

@@ -1,4 +1,4 @@
-QT += testlib
+QT += testlib network
 QT -= gui
 
 CONFIG += qt console warn_on depend_includepath testcase
@@ -15,12 +15,13 @@ INCLUDEPATH += $$APP_ROOT_DIR/src
 
 SOURCES +=  \
     $$DOMAIN_SOURCES \
-
-TEMPLATE = app
-
-SOURCES += \
-    main.cpp \
-    domain/requests/bodies/tst_FormdataRequestBody.cpp
+    domain/requests/bodies/tst_JsonRequestBody.cpp \
+    domain/requests/bodies/tst_FormdataRequestBody.cpp \
+    domain/requests/bodies/tst_RawRequestBody.cpp \
+    main.cpp
 
 HEADERS += \
-    $$DOMAIN_HEADERS
+    $$DOMAIN_HEADERS \
+    domain/requests/bodies/tst_FormdataRequestBody.hpp \
+    domain/requests/bodies/tst_JsonRequestBody.hpp \
+    domain/requests/bodies/tst_RawRequestBody.hpp
