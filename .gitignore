@@ -5,3 +5,5 @@ target_wrapper.sh
 *.stash
 
 Make*
+
+src.app
