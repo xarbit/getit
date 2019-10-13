@@ -1,5 +1,3 @@
-#pragma once
-
 #include "domain/requests/bodies/RawRequestBody.hpp"
 
 using namespace Domain::Requests;

@@ -1,5 +1,3 @@
-#pragma once
-
 #include "domain/requests/bodies/JsonRequestBody.hpp"
 
 using namespace Domain::Requests;

@@ -1,5 +1,7 @@
 ## Run tests
 
 ```
-$ qmake tests -o build
+$ qmake tests
+$ make
+$ ./tests/tests
 ```

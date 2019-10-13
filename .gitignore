@@ -3,8 +3,12 @@ target_wrapper.sh
 .DS_Store
 *.o
 *.stash
+*.user
 
 Make*
+moc_*
+ui_*.h
 
+tests/tests
 build
 src.app
