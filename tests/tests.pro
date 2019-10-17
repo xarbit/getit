@@ -15,13 +15,19 @@ INCLUDEPATH += $$APP_ROOT_DIR/src
 
 SOURCES +=  \
     $$DOMAIN_SOURCES \
+    ../../getit/tests/domain/requests/tst_Request.cpp \
     domain/requests/bodies/tst_JsonRequestBody.cpp \
     domain/requests/bodies/tst_FormdataRequestBody.cpp \
     domain/requests/bodies/tst_RawRequestBody.cpp \
-    main.cpp
+    main.cpp \
+    mocks/MockQNetworkManager.cpp \
+    mocks/MockQNetworkReply.cpp
 
 HEADERS += \
     $$DOMAIN_HEADERS \
+    ../../getit/tests/domain/requests/tst_Request.hpp \
     domain/requests/bodies/tst_FormdataRequestBody.hpp \
     domain/requests/bodies/tst_JsonRequestBody.hpp \
-    domain/requests/bodies/tst_RawRequestBody.hpp
+    domain/requests/bodies/tst_RawRequestBody.hpp \
+    mocks/MockQNetworkManager.hpp \
+    mocks/MockQNetworkReply.hpp

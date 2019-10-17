@@ -20,32 +20,31 @@ Request::~Request()
     headers.clear();
 }
 
-void Request::send(std::string httpMethod, std::string uri, std::function<void(Response*, std::string)> callback)
+void Request::send(std::string httpMethod, std::string uri)
 {
     QNetworkRequest request;
     auto url = QUrl(uri.c_str());
 
     QObject::connect(networkManager, &QNetworkAccessManager::finished,
-            this, [=](QNetworkReply* reply) {
-                if (reply->error()) {
-                    callback(nullptr, reply->errorString().toStdString());
-                    return;
+                this, [=](QNetworkReply* reply) {
+                    if (reply->error()) {
+                        emit requestError(reply->errorString().toStdString());
+                        return;
+                    }
+
+                    std::list<std::pair<std::string, std::string>> headers;
+
+                    auto rawHeaders = reply->rawHeaderPairs();
+                    auto body = reply->readAll().toStdString();
+
+                    for (auto const& item : headers) {
+                        headers.push_back(std::pair(item.first, item.second));
+                    }
+
+                    auto response = new Response(body, headers);
+                    emit requestSent(response);
                 }
-
-                std::list<std::pair<std::string, std::string>> headers;
-
-                auto rawHeaders = reply->rawHeaderPairs();
-                auto body = reply->readAll().toStdString();
-
-                for (auto const& item : headers) {
-                    headers.push_back(std::pair(item.first, item.second));
-                }
-
-                auto response = new Response(body, headers);
-
-                callback(response, "");
-            }
-        );
+            );
 
     request.setUrl(url);
     request.setAttribute(QNetworkRequest::Attribute::FollowRedirectsAttribute, followRedirects);
