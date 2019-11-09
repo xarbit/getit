@@ -1,0 +1,37 @@
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+set(SOURCEFILES
+    main.cpp
+    gui/MainWindow/MainWindow.cpp
+)
+
+set(HEADERFILES
+    domain/requests/bodies/FormdataRequestBody.hpp
+    domain/requests/IRequestBody.hpp
+    gui/MainWindow/MainWindow.hpp
+)
+
+set(UIFILES
+    gui/MainWindow/MainWindow.ui
+)
+
+add_executable(getit
+    main.cpp
+    ${HEADERFILES}
+    ${SOURCEFILES}
+    ${UIFILES}
+)
+
+# Include directories for dependencies
+include_directories(${CPR_INCLUDE_DIRS})
+
+# Libraries
+target_link_libraries(getit Qt5::Widgets)
+target_link_libraries(getit cpr ${CPR_LIBRARIES})

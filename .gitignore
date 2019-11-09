@@ -1,0 +1,13 @@
+_deps/
+bin/
+build/
+CMakeFiles/
+lib/
+Testing/
+
+*.cmake
+*.tcl
+*.user
+MakeFile
+*Cache*
+getit
