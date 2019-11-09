@@ -4,6 +4,7 @@ build/
 CMakeFiles/
 lib/
 Testing/
+*_autogen
 
 *.cmake
 *.tcl
