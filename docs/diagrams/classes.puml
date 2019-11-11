@@ -1,16 +1,5 @@
 @startuml Classes
 
-enum HttpRequestLibrary {
-    CPR
-}
-hide HttpRequestLibrary methods
-
-enum HttpRequestBody {
-    FORMDATA,
-    RAW
-}
-hide HttpRequestBody methods
-
 enum HttpRequestMethod {
     DELETE,
     GET,
@@ -22,48 +11,26 @@ enum HttpRequestMethod {
 }
 hide HttpRequestMethod methods
 
-class RequestFactory {
-    + {static} getRequest(library: HttpRequestLibrary): Request
+class FormdataElement {
+    + name: std::string
+    + value: std::variant<std::string, std::FILE>
 }
-hide RequestFactory fields
+hide FormdataElement methods
 
-class RequestBodyFactory {
-    + {static} getRequestBody(bodyType: HttpRequestBody, httpLibrary: HttpRequestLibrary): RequestBody
-}
-hide RequestBodyFactory fields
+abstract class Request {
+    # requestMethod: HttpRequestMethod
+    # uri: std::string
+    # body: std::variant<std::list<FormdataElement>, std::string>
 
-interface Request<HttpLibrary> {
-    ' Members
-    - requestMethod: HttpRequestMethod
-    - body: RequestBody
-    - httpLibrary: HttpLibrary
-
-    ' Methods
-    + Request(method: std::string, uri: std::string)
-    + addHeader(header: std::string, value: std::string): void
-    + addCookie(cookie: std::string, value: std::string): void
-    + setBody(body: RequestBody)
+    + setBody(body: std::variant<std::list<FormdataElement>, std::string>): void
+    + {abstract} Request(method: HttpRequestMethod, uri: std::string)
+    + {abstract} addHeader(header: std::string, value: std::string): void
+    + {abstract} addCookie(cookie: std::string, value: std::string): void
+    + {abstract} send();
 }
 
-interface RequestBody<InputDataType, OutputDataType> {
-    ' Members
-    - data: InputDataType
-
-    ' Methods
-    + setData(data: InputDataType): void
-    + getData(): OutputDataType
-}
-
-class CprRequest<cpr::Session>
+class CprRequest
 hide CprRequest fields
 hide CprRequest methods
-
-class CprFormdataRequestBody<Map<std::string, std::string>, cpr::Multipart>
-hide CprFormdataRequestBody fields
-hide CprFormdataRequestBody methods
-
-class CprRawRequestBody<std::string, std::string>
-hide CprRawRequestBody fields
-hide CprRawRequestBody methods
 
 @enduml

@@ -1,25 +1,28 @@
 #pragma once
 
+#include <list>
 #include <string>
-#include "domain/RequestBody.hpp"
+#include <variant>
+
+#include "domain/FormdataElement.hpp"
+#include "domain/HttpRequestMethod.hpp"
 
 namespace getit
 {
-    template<typename HttpLibrary>
     class Request
     {
         public:
-            Request(std::string method, std::string uri);
-            ~Request();
+            Request(HttpRequestMethod requestMethod, std::string uri);
+            virtual ~Request() = default;
 
+            void setBody(std::variant<std::list<FormdataElement>, std::string>);
             virtual void addHeader(std::string header, std::string value) = 0;
-            virtual void addCookoie(std::string cookie, std::string value) = 0;
-            virtual void setBody(RequestBody* body) = 0;
+            virtual void addCookie(std::string cookie, std::string value) = 0;
+            virtual void send() = 0;
 
-        private:
-            std::string method;
+        protected:
+            HttpRequestMethod requestMethod;
             std::string uri;
-            HttpLibrary httpLibrary;
-            RequestBody body;
+            std::variant<std::list<FormdataElement>, std::string> body;
     };
 }

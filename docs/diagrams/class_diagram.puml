@@ -4,16 +4,9 @@
 
 ' Inheritance
 Request <|.. CprRequest
-RequestBody <|.. CprFormdataRequestBody
-RequestBody <|.. CprRawRequestBody
 
 ' Dependencies
-Request ..> RequestBody
+Request ..> FormdataElement
 Request ..> HttpRequestMethod
-RequestFactory ..> HttpRequestLibrary
-RequestFactory ..> Request
-RequestBodyFactory ..> HttpRequestBody
-RequestBodyFactory ..> HttpRequestLibrary
-RequestBodyFactory ..> RequestBody
 
 @enduml
