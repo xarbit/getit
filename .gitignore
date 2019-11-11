@@ -4,8 +4,10 @@ build/
 CMakeFiles/
 lib/
 Testing/
-*_autogen
+*_autogen/
+.idea/
 
+*.cbp
 *.cmake
 *.tcl
 *.user

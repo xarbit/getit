@@ -1,0 +1,19 @@
+@startuml Class Diagram
+
+!include classes.puml
+
+' Inheritance
+Request <|.. CprRequest
+RequestBody <|.. CprFormdataRequestBody
+RequestBody <|.. CprRawRequestBody
+
+' Dependencies
+Request ..> RequestBody
+Request ..> HttpRequestMethod
+RequestFactory ..> HttpRequestLibrary
+RequestFactory ..> Request
+RequestBodyFactory ..> HttpRequestBody
+RequestBodyFactory ..> HttpRequestLibrary
+RequestBodyFactory ..> RequestBody
+
+@enduml
