@@ -13,8 +13,6 @@ set(SOURCEFILES
 )
 
 set(HEADERFILES
-    domain/requests/bodies/FormdataRequestBody.hpp
-    domain/requests/IRequestBody.hpp
     gui/MainWindow/MainWindow.hpp
 )
 
@@ -23,7 +21,6 @@ set(UIFILES
 )
 
 add_executable(getit
-    main.cpp
     ${HEADERFILES}
     ${SOURCEFILES}
     ${UIFILES}

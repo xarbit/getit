@@ -6,6 +6,7 @@ lib/
 Testing/
 *_autogen/
 .idea/
+.vscode/
 
 *.cbp
 *.cmake
