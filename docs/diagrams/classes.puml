@@ -1,36 +1,44 @@
 @startuml Classes
 
-enum HttpRequestMethod {
-    DELETE,
-    GET,
-    HEAD,
-    OPTIONS,
-    PATCH,
-    POST,
-    PUT
+class RequestBody {
+    + {abstract} getContentTypeHeader(): string
+    + {abstract} getBody(): string
+    + {abstract} getSize(): size_t
 }
-hide HttpRequestMethod methods
+hide RequestBody fields
 
-class FormdataElement {
-    + name: std::string
-    + value: std::variant<std::string, std::FILE>
-}
-hide FormdataElement methods
+class FormdataRequestBody {
+    - boundary: string
 
-abstract class Request {
-    # requestMethod: HttpRequestMethod
-    # uri: std::string
-    # body: std::variant<std::list<FormdataElement>, std::string>
-
-    + setBody(body: std::variant<std::list<FormdataElement>, std::string>): void
-    + {abstract} Request(method: HttpRequestMethod, uri: std::string)
-    + {abstract} addHeader(header: std::string, value: std::string): void
-    + {abstract} addCookie(cookie: std::string, value: std::string): void
-    + {abstract} send();
+    + addElement(key: string, value: string): void
+    + addFile(key: string, filePath: string): void
 }
 
-class CprRequest
-hide CprRequest fields
-hide CprRequest methods
+class RawRequestBody {
+    - contentTypeHeader: string
+    - body: string
+
+    + RawRequestBody(contentTypeHeader: string)
+    + setBody(body: string): void
+}
+
+class Response {
+    + statusCode: int
+    + headers: map<string, string>
+    + body: string
+}
+hide Response methods
+
+class Request {
+    - method: string
+    - uri: string
+    - headers: map<string, string>
+    - body: RequestBody
+
+    + Request(method: string, uri: string)
+    + addHeader(header: string, value: string): void
+    + setBody(body: RequestBody): void
+    + send(callback(response: response): function<void>): void
+}
 
 @enduml

@@ -1,7 +1,8 @@
 ## Build application
 
 ```
-$ cmake .
+$ cd build
+$ cmake ../
 $ make getit
 $ ./bin/getit
 ```
@@ -9,7 +10,8 @@ $ ./bin/getit
 ## Run tests
 
 ```
-$ cmake .
+$ cd build
+$ cmake ../
 $ make getit_tests
 $ ./bin/getit_tests
 ```

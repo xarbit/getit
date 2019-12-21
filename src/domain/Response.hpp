@@ -3,16 +3,13 @@
 #include <map>
 #include <string>
 
-namespace getit
+namespace domain
 {
     struct Response
     {
         public:
-            std::string body;
+            int statusCode;
             std::map<std::string, std::string> headers;
-
-            std::string getHeader(std::string name) {
-                this->headers.find(name);
-            }
+            std::string body;
     };
 }

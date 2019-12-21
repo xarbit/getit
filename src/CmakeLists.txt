@@ -9,10 +9,13 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 set(SOURCEFILES
     main.cpp
+    domain/RawRequestBody.cpp
     gui/MainWindow/MainWindow.cpp
 )
 
 set(HEADERFILES
+    domain/RawRequestBody.hpp
+    domain/RequestBody.hpp
     gui/MainWindow/MainWindow.hpp
 )
 
@@ -26,9 +29,5 @@ add_executable(getit
     ${UIFILES}
 )
 
-# Include directories for dependencies
-include_directories(${CPR_INCLUDE_DIRS})
-
 # Libraries
 target_link_libraries(getit Qt5::Widgets)
-target_link_libraries(getit cpr ${CPR_LIBRARIES})

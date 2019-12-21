@@ -3,10 +3,11 @@
 !include classes.puml
 
 ' Inheritance
-Request <|.. CprRequest
+RequestBody <-- FormdataRequestBody
+RequestBody <-- RawRequestBody
 
 ' Dependencies
-Request ..> FormdataElement
-Request ..> HttpRequestMethod
+Request ..> RequestBody
+Request ..> Response
 
 @enduml
