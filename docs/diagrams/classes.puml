@@ -9,7 +9,10 @@ hide RequestBody fields
 
 class FormdataRequestBody {
     - boundary: string
+    - body: map<string, sting>
 
+    + FormdataRequestBody(boundary: string)
+    + FormdataRequestBody()
     + addElement(key: string, value: string): void
     + addFile(key: string, filePath: string): void
 }
@@ -19,6 +22,7 @@ class RawRequestBody {
     - body: string
 
     + RawRequestBody(contentTypeHeader: string)
+    + RawRequestBody()
     + setBody(body: string): void
 }
 

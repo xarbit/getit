@@ -1,8 +1,11 @@
 set(SRCFILES
+    ../src/domain/FormdataRequestBody.cpp
     ../src/domain/RawRequestBody.cpp
 )
 
 set(TST_SRCFILES
+    main.cpp
+    domain/tst_FormdataRequestBody.cpp
     domain/tst_RawRequestBody.cpp
 )
 

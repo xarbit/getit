@@ -1,5 +1,3 @@
-#define CATCH_CONFIG_MAIN
-
 #include <string>
 #include <catch2/catch.hpp>
 
@@ -32,6 +30,21 @@ TEST_CASE("Test RawRequestBody", "[domain]")
 
         // Assert
         REQUIRE(result == defaultContentType);
+    }
+
+    SECTION("RawRequestBody returns expected size of the body")
+    {
+        // Arrange
+        std::string body = "My plain text body";
+        size_t expectedSize = body.size();
+        auto request = new domain::RawRequestBody();
+
+        // Act
+        request->setBody(body);
+        size_t result = request->getSize();
+
+        // Assert
+        REQUIRE(result == expectedSize);
     }
 
     SECTION ("RawRequestBody returns given body")
