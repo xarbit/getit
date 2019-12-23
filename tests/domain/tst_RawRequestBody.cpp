@@ -6,6 +6,7 @@
 TEST_CASE("Test RawRequestBody", "[domain]")
 {
     std::string defaultContentType = "text/plain;";
+    std::string body = "My plain text body";
 
     SECTION("RawRequestBody returns correct content type header information")
     {
@@ -35,7 +36,6 @@ TEST_CASE("Test RawRequestBody", "[domain]")
     SECTION("RawRequestBody returns expected size of the body")
     {
         // Arrange
-        std::string body = "My plain text body";
         size_t expectedSize = body.size();
         auto request = new domain::RawRequestBody();
 
@@ -50,7 +50,6 @@ TEST_CASE("Test RawRequestBody", "[domain]")
     SECTION ("RawRequestBody returns given body")
     {
         // Arrange
-        std::string body = "My plain text body";
         auto request = new domain::RawRequestBody();
 
         // Act

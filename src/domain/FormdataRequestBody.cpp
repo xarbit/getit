@@ -33,7 +33,7 @@ void FormdataRequestBody::addFile(std::string key, std::string filePath)
     );
 }
 
-std::string FormdataRequestBody::getContentTypeHeader()
+std::string FormdataRequestBody::getContentType()
 {
     return "multipart/formdata; boundary=\"" + this->boundary + "\"";
 }

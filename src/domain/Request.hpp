@@ -12,20 +12,16 @@ namespace domain
     class Request
     {
         public:
-            Request(std::string method, std::string host, std::string resource);
+            Request(std::string method, std::string uri);
             ~Request();
 
             void addHeader(std::string header, std::string value);
             void setBody(RequestBody* body);
-            void send(std::function<void(Response response)> callback);
+            virtual void send(std::function<void(Response response)> callback) = 0;
 
-        private:
-            std::string buildHeaders();
-            std::string buildHeader(std::string key, std::string value);
-
+        protected:
             std::string method;
-            std::string host;
-            std::string resource;
+            std::string uri;
             std::map<std::string, std::string> headers;
             RequestBody* body;
     };

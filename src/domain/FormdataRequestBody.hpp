@@ -17,7 +17,7 @@ namespace domain
             void addElement(std::string key, std::string value);
             void addFile(std::string key, std::string filePath);
 
-            std::string getContentTypeHeader() override;
+            std::string getContentType() override;
             std::string getBody() override;
             size_t getSize() override;
 

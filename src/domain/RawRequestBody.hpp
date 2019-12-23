@@ -15,7 +15,7 @@ namespace domain
 
             void setBody(std::string body);
             
-            std::string getContentTypeHeader() override;
+            std::string getContentType() override;
             std::string getBody() override;
             size_t getSize() override;
 

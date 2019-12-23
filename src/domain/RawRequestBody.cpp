@@ -26,7 +26,7 @@ void RawRequestBody::setBody(std::string body)
     this->body = body;
 }
 
-std::string RawRequestBody::getContentTypeHeader()
+std::string RawRequestBody::getContentType()
 {
     return this->contentTypeHeader;
 }
