@@ -4,7 +4,7 @@
 
 #include "domain/RequestBody.hpp"
 
-namespace domain
+namespace getit::domain
 {
     class RawRequestBody: public RequestBody
     {

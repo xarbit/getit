@@ -5,7 +5,7 @@
 
 #include "domain/Request.hpp"
 
-namespace domain
+namespace getit::domain
 {
     class CppRestRequest: public Request
     {

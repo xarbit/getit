@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace domain
+namespace getit::domain
 {
     struct RequestBody
     {

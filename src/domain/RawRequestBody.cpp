@@ -1,8 +1,6 @@
 #include "domain/RawRequestBody.hpp"
 
-using namespace domain;
-
-#include <iostream>
+using namespace getit::domain;
 
 RawRequestBody::RawRequestBody(std::string contentTypeHeader):
     contentTypeHeader(contentTypeHeader)

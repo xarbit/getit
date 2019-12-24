@@ -7,7 +7,7 @@
 #include "domain/RequestBody.hpp"
 #include "domain/Response.hpp"
 
-namespace domain
+namespace getit::domain
 {
     class Request
     {

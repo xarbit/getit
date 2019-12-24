@@ -1,6 +1,6 @@
 #include "domain/CppRestRequest.hpp"
 
-using namespace domain;
+using namespace getit::domain;
 
 CppRestRequest::CppRestRequest(std::string method, std::string uri, web::http::client::http_client* client):
     Request(method, uri)

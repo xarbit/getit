@@ -1,6 +1,6 @@
 #include "domain/Request.hpp"
 
-using namespace domain;
+using namespace getit::domain;
 
 Request::Request(std::string method, std::string uri):
     method(method),

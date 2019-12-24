@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 
-namespace domain
+namespace getit::domain
 {
     struct Response
     {
