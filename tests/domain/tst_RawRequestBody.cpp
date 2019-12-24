@@ -12,10 +12,10 @@ TEST_CASE("Test RawRequestBody", "[domain]")
     {
         // Arrange
         std::string contentType = "application/json;";
-        auto request = new domain::RawRequestBody(contentType);
+        auto request = new getit::domain::RawRequestBody(contentType);
 
         // Act
-        std::string result = request->getContentTypeHeader();
+        std::string result = request->getContentType();
 
         // Assert
         REQUIRE(result == contentType);
@@ -24,10 +24,10 @@ TEST_CASE("Test RawRequestBody", "[domain]")
     SECTION("RawRequestBody returns default plain content type header when no explicit content type is given")
     {
         // Arrange
-        auto request = new domain::RawRequestBody();
+        auto request = new getit::domain::RawRequestBody();
 
         // Act
-        std::string result = request->getContentTypeHeader();
+        std::string result = request->getContentType();
 
         // Assert
         REQUIRE(result == defaultContentType);
@@ -37,7 +37,7 @@ TEST_CASE("Test RawRequestBody", "[domain]")
     {
         // Arrange
         size_t expectedSize = body.size();
-        auto request = new domain::RawRequestBody();
+        auto request = new getit::domain::RawRequestBody();
 
         // Act
         request->setBody(body);
@@ -50,7 +50,7 @@ TEST_CASE("Test RawRequestBody", "[domain]")
     SECTION ("RawRequestBody returns given body")
     {
         // Arrange
-        auto request = new domain::RawRequestBody();
+        auto request = new getit::domain::RawRequestBody();
 
         // Act
         request->setBody(body);
