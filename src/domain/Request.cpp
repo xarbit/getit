@@ -16,7 +16,7 @@ Request::~Request()
 
 void Request::addHeader(std::string header, std::string value)
 {
-    this->headers.insert(header, value);
+    this->headers.insert({header, value});
 }
 
 void Request::setBody(RequestBody* body)

@@ -11,13 +11,20 @@ find_package(Boost COMPONENTS thread system chrono REQUIRED)
 
 set(SOURCEFILES
     main.cpp
+    domain/CppRestRequest.cpp
+    domain/FormdataRequestBody.cpp
+    domain/Request.cpp
     domain/RawRequestBody.cpp
     gui/MainWindow/MainWindow.cpp
 )
 
 set(HEADERFILES
+    domain/CppRestRequest.hpp
+    domain/FormdataRequestBody.hpp
     domain/RawRequestBody.hpp
+    domain/Request.hpp
     domain/RequestBody.hpp
+    domain/Response.hpp
     gui/MainWindow/MainWindow.hpp
 )
 

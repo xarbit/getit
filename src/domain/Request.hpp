@@ -23,6 +23,6 @@ namespace getit::domain
             std::string method;
             std::string uri;
             std::map<std::string, std::string> headers;
-            RequestBody* body;
+            RequestBody* body = nullptr;
     };
 }

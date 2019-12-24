@@ -7,7 +7,7 @@ CppRestRequest::CppRestRequest(std::string method, std::string uri, web::http::c
 {
     if (client == nullptr) {
         client = new web::http::client::http_client(uri);
-    }   
+    }
 }
 
 CppRestRequest::~CppRestRequest()
@@ -17,27 +17,34 @@ CppRestRequest::~CppRestRequest()
 
 void CppRestRequest::send(std::function<void(Response response)> callback)
 {
-    std::string body = this->body->getBody();
-    std::string contentType = this->body->getContentType();
+    
+    if (this->body == nullptr || this->body == NULL) {
+        std::cout << "Body is null" << std::endl;
+    }
 
     web::http::http_request request;
-    request.set_body(body);
+    request.set_body(this->body->getBody(), this->body->getContentType());
     request.set_method(this->method);
 
-    request.headers.add("", "");
-    
+    std::cout << "After creating and setting request" << std::endl;
+
+    for (auto const& [header, value]: this->headers) {
+        request.headers().add(header, value);
+    }
+
+    std::cout << "After setting headers" << std::endl;
 
     this->client->request(request).then([=](web::http::http_response restResponse) {
-        Response response;
+        std::cout << restResponse.extract_string().get() << std::endl;
+        // Response response;
         
-        restResponse.extract_string().then([=](std::string body) {
-            Response response;
+        // response.body = restResponse.extract_string().get();
+        // response.statusCode = restResponse.status_code();
 
-            response.body = body;
-            response.headers = restResponse.headers;
-            response.statusCode = restResponse.status_code();
+        // for (auto const& [header, value]: restResponse.headers()) {
+        //     response.headers.insert({header, value});
+        // }
 
-            callback(response);
-        });
+        // callback(response);
     });
 }
