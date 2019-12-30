@@ -23,6 +23,6 @@ namespace getit::domain
             std::string contentTypeHeader;
             std::string body;
 
-            inline static const std::string DEF_CONTENT_TYPE = "text/plain;";
+            inline static const std::string DEF_CONTENT_TYPE = "text/plain";
     };
 }

@@ -35,7 +35,11 @@ void FormdataRequestBody::addFile(std::string key, std::string filePath)
 
 std::string FormdataRequestBody::getContentType()
 {
-    return "multipart/formdata; boundary=\"" + this->boundary + "\"";
+    boost::format frmt = boost::format(
+        "multipart/formdata; boundary=\"%1%\""
+    ) % this->boundary;
+
+    return frmt.str();
 }
 
 std::string FormdataRequestBody::getBody()
@@ -56,21 +60,18 @@ size_t FormdataRequestBody::getSize()
 
 std::string FormdataRequestBody::buildContentData(std::string key, std::string value)
 {
-    return this->boundary + 
-            "\r\n" + 
-            "Content-Disposition: form-data; name=" +
-            "\"" + key + "\"" +
-            "\r\n\r\n" +
-            value;
+    boost::format frmt = boost::format(
+        "%1%\r\nContent-Disposition: form-data; name=\"%2%\"\r\n\r\n%3%"
+    ) % this->boundary % key % value;
+
+    return frmt.str();
 }
 
 std::string FormdataRequestBody::buildContentDataFile(std::string key, std::string fileName, std::string contents)
 {
-    return this->boundary + 
-            "\r\n" + 
-            "Content-Disposition: form-data; name=" +
-            "\"" + key + "\"; filename=" +
-            "\"" + fileName + "\"" +
-            "\r\n\r\n" +
-            contents;
+    boost::format frmt = boost::format(
+        "%1%\r\nContent-Disposition: form-data; name=\"%2%\"; filename=\"%3%\"\r\n\r\n%4%"
+    ) % this->boundary % key % fileName % contents;
+
+    return frmt.str();
 }

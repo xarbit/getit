@@ -1,62 +1,53 @@
-#include <string>
 #include <catch2/catch.hpp>
+#include <string>
 
 #include "domain/RawRequestBody.hpp"
 
-TEST_CASE("Test RawRequestBody", "[domain]")
+SCENARIO("Newly constructed RawRequestBody", "[domain]")
 {
-    std::string defaultContentType = "text/plain;";
-    std::string body = "My plain text body";
 
-    SECTION("RawRequestBody returns correct content type header information")
+    WHEN("The contentType is given through the constructor")
     {
-        // Arrange
-        std::string contentType = "application/json;";
-        auto request = new getit::domain::RawRequestBody(contentType);
+        std::string contentType = "application/json";
+        auto requestBody = new getit::domain::RawRequestBody(contentType);
 
-        // Act
-        std::string result = request->getContentType();
+        THEN("the given contentType is returned")
+        {
+            std::string result = requestBody->getContentType();
 
-        // Assert
-        REQUIRE(result == contentType);
+            REQUIRE(result == contentType);
+        }
     }
 
-    SECTION("RawRequestBody returns default plain content type header when no explicit content type is given")
+    WHEN("No contentType is given through the constructor")
     {
-        // Arrange
-        auto request = new getit::domain::RawRequestBody();
+        auto requestBody = new getit::domain::RawRequestBody();
+        std::string defaultContentType = "text/plain";
 
-        // Act
-        std::string result = request->getContentType();
+        THEN("the default contentType is returned")
+        {
+            std::string result = requestBody->getContentType();
 
-        // Assert
-        REQUIRE(result == defaultContentType);
+            REQUIRE(result == defaultContentType);
+        }
     }
 
-    SECTION("RawRequestBody returns expected size of the body")
+    WHEN("The data is requested")
     {
-        // Arrange
-        size_t expectedSize = body.size();
-        auto request = new getit::domain::RawRequestBody();
+        auto requestBody = new getit::domain::RawRequestBody();
 
-        // Act
-        request->setBody(body);
-        size_t result = request->getSize();
+        THEN("the output is an empty string")
+        {
+            std::string result = requestBody->getBody();
 
-        // Assert
-        REQUIRE(result == expectedSize);
-    }
+            REQUIRE(result == "");
+        }
 
-    SECTION ("RawRequestBody returns given body")
-    {
-        // Arrange
-        auto request = new getit::domain::RawRequestBody();
+        THEN("the output is zero")
+        {
+            size_t result = requestBody->getSize();
 
-        // Act
-        request->setBody(body);
-        std::string result = request->getBody();
-
-        // Assert
-        REQUIRE(result == body);
+            REQUIRE(result == 0);
+        }
     }
 }
