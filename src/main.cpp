@@ -14,9 +14,9 @@ int main(int argc, char** argv)
     auto request = new getit::domain::CppRestRequest("GET", "https://google.com");
     auto body = new getit::domain::RawRequestBody();
     
-    request->setBody(body);
+    // request->setBody(body);
     request->send([](getit::domain::Response response) {
-        std::cout << response.body << std::endl;
+        std::cout << response.body << std::endl << response.statusCode << std::endl;
     });
 
     return a.exec();

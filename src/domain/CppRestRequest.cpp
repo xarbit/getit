@@ -22,34 +22,51 @@ CppRestRequest::~CppRestRequest()
 
 void CppRestRequest::send(std::function<void(Response response)> callback)
 {
-    
-    if (this->body == nullptr || this->body == NULL) {
-        std::cout << "Body is null" << std::endl;
-    }
-
-    web::http::http_request request;
-    request.set_body(this->body->getBody(), this->body->getContentType());
-    request.set_method(this->method);
-
-    std::cout << "After creating and setting request" << std::endl;
-
-    for (auto const& [header, value]: this->headers) {
-        request.headers().add(header, value);
-    }
-
-    std::cout << "After setting headers" << std::endl;
+    web::http::http_request request = this->buildRequest();  
 
     this->client.request(request).then([=](web::http::http_response restResponse) {
-        std::cout << restResponse.extract_string().get() << std::endl;
-        // Response response;
-        
-        // response.body = restResponse.extract_string().get();
-        // response.statusCode = restResponse.status_code();
+        Response response = this->buildResponse(restResponse);
 
-        // for (auto const& [header, value]: restResponse.headers()) {
-        //     response.headers.insert({header, value});
-        // }
-
-        // callback(response);
+        callback(response);
     });
+}
+
+
+web::http::http_request CppRestRequest::buildRequest()
+{
+    web::http::http_request request;
+    request.set_method(this->method);
+
+    this->addHeadersToRequest(&request);
+    this->addBodyToRequest(&request);
+
+    return request;
+}
+
+void CppRestRequest::addHeadersToRequest(web::http::http_request* request)
+{
+    for (auto const& [header, value]: this->headers) {
+        request->headers().add(header, value);
+    }
+}
+
+void CppRestRequest::addBodyToRequest(web::http::http_request* request)
+{
+    if (this->body != nullptr) {
+        request->set_body(this->body->getBody(), this->body->getContentType());
+    }
+}
+
+Response CppRestRequest::buildResponse(web::http::http_response restResponse)
+{
+    Response response;
+        
+    response.body = restResponse.extract_string().get();
+    response.statusCode = restResponse.status_code();
+
+    for (auto const& [header, value]: restResponse.headers()) {
+        response.headers.insert({header, value});
+    }
+
+    return response;
 }

@@ -18,5 +18,10 @@ namespace getit::domain
 
         private:
             web::http::client::http_client client;
+
+            web::http::http_request buildRequest();
+            void addHeadersToRequest(web::http::http_request* request);
+            void addBodyToRequest(web::http::http_request* request);
+            Response buildResponse(web::http::http_response restResponse);
     };
 }
