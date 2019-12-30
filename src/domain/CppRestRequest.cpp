@@ -2,17 +2,22 @@
 
 using namespace getit::domain;
 
-CppRestRequest::CppRestRequest(std::string method, std::string uri, web::http::client::http_client* client):
-    Request(method, uri)
+CppRestRequest::CppRestRequest(std::string method, std::string uri, web::http::client::http_client client):
+    Request(method, uri),
+    client(client)
 {
-    if (client == nullptr) {
-        client = new web::http::client::http_client(uri);
-    }
+    
+}
+
+CppRestRequest::CppRestRequest(std::string method, std::string uri):
+    CppRestRequest(method, uri, web::http::client::http_client(uri))
+{
+    
 }
 
 CppRestRequest::~CppRestRequest()
 {
-    delete this->client;
+    
 }
 
 void CppRestRequest::send(std::function<void(Response response)> callback)
@@ -34,7 +39,7 @@ void CppRestRequest::send(std::function<void(Response response)> callback)
 
     std::cout << "After setting headers" << std::endl;
 
-    this->client->request(request).then([=](web::http::http_response restResponse) {
+    this->client.request(request).then([=](web::http::http_response restResponse) {
         std::cout << restResponse.extract_string().get() << std::endl;
         // Response response;
         
