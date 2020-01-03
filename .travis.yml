@@ -21,6 +21,7 @@ addons:
 
 before_script:
   - cd build && cmake ../
+  - pwd
 
 script:
   - cd build && make getit_tests && ./bin/getit_tests
