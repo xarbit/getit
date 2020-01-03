@@ -1,0 +1,22 @@
+language: cpp
+
+os:
+  - macos
+  - linux
+
+addons:
+  apt:
+    packages:
+      - libcpprest-dev
+  homebrew:
+    packages:
+      - openssl
+      - cpprestsdk
+      - qt
+      - boost
+
+script:
+  - cd build
+  - cmake ../
+  - make getit_tests
+  - ./bin/getit_tests
