@@ -8,6 +8,10 @@ addons:
   apt:
     packages:
       - libcpprest-dev
+      - qt5-default
+      - cmake
+      - libboost-all-dev
+
   homebrew:
     packages:
       - openssl
@@ -15,8 +19,10 @@ addons:
       - qt
       - boost
 
-script:
+before_script:
   - cd build
   - cmake ../
+
+script:
   - make getit_tests
-  - ./bin/getit_tests
+  - make getit
