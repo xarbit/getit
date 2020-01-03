@@ -20,8 +20,9 @@ addons:
       - boost
 
 before_script:
-  - cd build && cmake ../
+  - cd build
   - pwd
+  - cmake ..
 
 script:
   - cd build && make getit_tests && ./bin/getit_tests
