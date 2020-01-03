@@ -25,5 +25,5 @@ before_script:
   - cmake ..
 
 script:
-  - cd build && make getit_tests && ./bin/getit_tests
-  - cd build && make getit
+  - make getit_tests && ./bin/getit_tests
+  - make getit
