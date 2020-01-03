@@ -3,8 +3,6 @@
 
 #include "domain/FormdataRequestBody.hpp"
 
-#include <iostream>
-
 SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
 {
     std::string boundary = "--abc";
@@ -27,7 +25,7 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         auto requestBody = new getit::domain::FormdataRequestBody(boundary);
         std::string key = "MyBodyKey";
         std::string value = "This&is=My+Body@";
-        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value;
+        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value + "\r\n";
 
         requestBody->addElement(key, value);
 
@@ -44,7 +42,7 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         auto requestBody = new getit::domain::FormdataRequestBody(boundary);
         std::string key = "MyFile";
         std::string filePath = "../non-existing-file.non_existing_ext";
-        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"; filename=\"" + filePath + "\"\r\n\r\n";
+        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"; filename=\"" + filePath + "\"\r\n\r\n\r\n";
 
         requestBody->addFile(key, filePath);
 
@@ -68,7 +66,7 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         auto requestBody = new getit::domain::FormdataRequestBody(boundary);
         std::string key = "MyFile";
         std::string filePath = "./tst_file.txt";
-        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"; filename=\"" + filePath + "\"\r\n\r\ncontent";
+        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"; filename=\"" + filePath + "\"\r\n\r\ncontent\r\n";
 
         requestBody->addFile(key, filePath);
 
@@ -93,10 +91,10 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
 
         std::string elementKey = "MyBodyKey";
         std::string elementValue = "This&is=My+Body@";
-        std::string expectedElementOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + elementKey + "\"\r\n\r\n" + elementValue;
+        std::string expectedElementOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + elementKey + "\"\r\n\r\n" + elementValue + "\r\n";
         std::string fileKey = "MyFile";
         std::string filePath = "./tst_file.txt";
-        std::string expectedFileOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + fileKey + "\"; filename=\"" + filePath + "\"\r\n\r\ncontent";
+        std::string expectedFileOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + fileKey + "\"; filename=\"" + filePath + "\"\r\n\r\ncontent\r\n";
 
         requestBody->addFile(fileKey, filePath);
         requestBody->addElement(elementKey, elementValue);

@@ -60,8 +60,9 @@ void CppRestRequest::addBodyToRequest(web::http::http_request* request)
 Response CppRestRequest::buildResponse(web::http::http_response restResponse)
 {
     Response response;
+    bool ignoreContentType = true;
         
-    response.body = restResponse.extract_string().get();
+    response.body = restResponse.extract_string(ignoreContentType).get();
     response.statusCode = restResponse.status_code();
 
     for (auto const& [header, value]: restResponse.headers()) {

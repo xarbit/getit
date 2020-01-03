@@ -61,7 +61,7 @@ size_t FormdataRequestBody::getSize()
 std::string FormdataRequestBody::buildContentData(std::string key, std::string value)
 {
     boost::format frmt = boost::format(
-        "%1%\r\nContent-Disposition: form-data; name=\"%2%\"\r\n\r\n%3%"
+        "%1%\r\nContent-Disposition: form-data; name=\"%2%\"\r\n\r\n%3%\r\n"
     ) % this->boundary % key % value;
 
     return frmt.str();
@@ -70,7 +70,7 @@ std::string FormdataRequestBody::buildContentData(std::string key, std::string v
 std::string FormdataRequestBody::buildContentDataFile(std::string key, std::string fileName, std::string contents)
 {
     boost::format frmt = boost::format(
-        "%1%\r\nContent-Disposition: form-data; name=\"%2%\"; filename=\"%3%\"\r\n\r\n%4%"
+        "%1%\r\nContent-Disposition: form-data; name=\"%2%\"; filename=\"%3%\"\r\n\r\n%4%\r\n"
     ) % this->boundary % key % fileName % contents;
 
     return frmt.str();
