@@ -19,7 +19,7 @@ addons:
     packages:
       - openssl
       - cpprestsdk
-      - qt
+      - qt5
       - boost
       - cmake
 
