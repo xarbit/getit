@@ -2,7 +2,7 @@
 
 ```
 $ cd build
-$ cmake ../
+$ cmake ../ -DOPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2t/lib
 $ make getit
 $ ./bin/getit
 ```
@@ -11,10 +11,15 @@ $ ./bin/getit
 
 ```
 $ cd build
-$ cmake ../
+$ cmake ../ -DOPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2t/lib
 $ make getit_tests
 $ ./bin/getit_tests
 ```
+
+*Known errors:
+
+- Could NOT find OpenSSL
+	- Run `cmake` with the `OPENSSL_INCLUDE_DIR` variable, for example: `cmake ../ -DOPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2t/include`
 
 ### Dependencies
 
@@ -25,8 +30,6 @@ GetIt makes use of the [Microsoft CPP Rest SDK](https://github.com/Microsoft/cpp
 #### OpenSSL
 
 The Microsoft CPP Rest SDK uses the OpenSSL package.
-
-https://gist.github.com/llbbl/c54f44d028d014514d5d837f64e60bac
 
 #### Boost packages
 
