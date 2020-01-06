@@ -24,10 +24,10 @@ addons:
       - cmake
 
 before_script:
+  - locate openssl/conf.h
   - cd build
   - cmake ..
 
 script:
-  - locate openssl/conf.h
   - make getit_tests && ./bin/getit_tests
   - make getit
