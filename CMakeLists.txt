@@ -6,8 +6,6 @@ project(GetIt
   HOMEPAGE_URL "https://getit.bartkessels.net"
 )
 
-include(CTest)
-
 # Variables
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

@@ -16,6 +16,7 @@ set(SOURCEFILES
     domain/Request.cpp
     domain/RawRequestBody.cpp
     gui/MainWindow/MainWindow.cpp
+    gui/RequestBody/RawRequestBody/RawRequestBodyWidget.cpp
 )
 
 set(HEADERFILES
@@ -26,10 +27,13 @@ set(HEADERFILES
     domain/RequestBody.hpp
     domain/Response.hpp
     gui/MainWindow/MainWindow.hpp
+    gui/RequestBody/RawRequestBody/RawRequestBodyWidget.hpp
+    gui/RequestBody/BodyWidget.hpp
 )
 
 set(UIFILES
     gui/MainWindow/MainWindow.ui
+    gui/RequestBody/RawRequestBody/RawRequestBodyWidget.ui
 )
 
 add_executable(getit

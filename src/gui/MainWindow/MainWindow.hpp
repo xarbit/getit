@@ -2,11 +2,14 @@
 
 #include <QMainWindow>
 
+#include "gui/RequestBody/BodyWidget.hpp"
+#include "gui/RequestBody/RawRequestBody/RawRequestBodyWidget.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-namespace Gui::MainWindow
+namespace getit::gui
 {
     class MainWindow: public QMainWindow
     {
@@ -17,6 +20,9 @@ namespace Gui::MainWindow
             ~MainWindow();
 
         private:
+            // void registerRequestBodies();
+
             Ui::MainWindow* ui;
+            // const getit::gui::requestbody::BodyWidget* bodyWidgets[];
     };
 }

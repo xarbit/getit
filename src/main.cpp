@@ -8,7 +8,7 @@
 int main(int argc, char** argv)
 {
     QApplication a(argc, argv);
-    Gui::MainWindow::MainWindow w;
+    getit::gui::MainWindow w;
     w.show();
 
     auto request = new getit::domain::CppRestRequest("GET", "https://google.com");
