@@ -22,5 +22,11 @@ std::string RawRequestBodyWidget::getName()
 
 getit::domain::RequestBody* RawRequestBodyWidget::getRequestBody()
 {
+    std::string contentType = ui->contentType->text().toStdString();
+    std::string body = ui->rawBody->toPlainText().toStdString();
+
+    this->body.setContentType(contentType);
+    this->body.setBody(body);
+
     return &this->body;
 }

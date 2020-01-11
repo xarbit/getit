@@ -15,8 +15,11 @@ set(SOURCEFILES
     domain/FormdataRequestBody.cpp
     domain/Request.cpp
     domain/RawRequestBody.cpp
+    gui/HeaderWidget/HeaderControllerWidget.cpp
     gui/MainWindow/MainWindow.cpp
+    gui/RequestBody/FormdataRequestBody/FormdataRequestBodyWidget.cpp
     gui/RequestBody/RawRequestBody/RawRequestBodyWidget.cpp
+    gui/RequestBody/BodyControllerWidget.cpp
 )
 
 set(HEADERFILES
@@ -26,20 +29,17 @@ set(HEADERFILES
     domain/Request.hpp
     domain/RequestBody.hpp
     domain/Response.hpp
+    gui/HeaderWidget/HeaderControllerWidget.hpp
     gui/MainWindow/MainWindow.hpp
+    gui/RequestBody/FormdataRequestBody/FormdataRequestBodyWidget.hpp
     gui/RequestBody/RawRequestBody/RawRequestBodyWidget.hpp
+    gui/RequestBody/BodyControllerWidget.hpp
     gui/RequestBody/BodyWidget.hpp
-)
-
-set(UIFILES
-    gui/MainWindow/MainWindow.ui
-    gui/RequestBody/RawRequestBody/RawRequestBodyWidget.ui
 )
 
 add_executable(getit
     ${HEADERFILES}
-    ${SOURCEFILES}
-    ${UIFILES}
+    ${SOURCEFILES}  
 )
 
 # Libraries

@@ -14,26 +14,88 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabBodies">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>170</y>
-      <width>120</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Tab 1</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Tab 2</string>
-     </attribute>
-    </widget>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QComboBox" name="cb_method">
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>GET</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>POST</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>PUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>PATCH</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DELETE</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>OPTIONS</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="le_uri"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_send">
+        <property name="text">
+         <string>Send</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QGridLayout" name="headers">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="body">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="response" columnminimumwidth="0">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetMinimumSize</enum>
+        </property>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

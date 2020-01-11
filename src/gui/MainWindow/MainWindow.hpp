@@ -2,8 +2,8 @@
 
 #include <QMainWindow>
 
-#include "gui/RequestBody/BodyWidget.hpp"
-#include "gui/RequestBody/RawRequestBody/RawRequestBodyWidget.hpp"
+#include "gui/HeaderWidget/HeaderControllerWidget.hpp"
+#include "gui/RequestBody/BodyControllerWidget.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,9 +20,6 @@ namespace getit::gui
             ~MainWindow();
 
         private:
-            // void registerRequestBodies();
-
             Ui::MainWindow* ui;
-            // const getit::gui::requestbody::BodyWidget* bodyWidgets[];
     };
 }

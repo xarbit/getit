@@ -9,10 +9,11 @@ namespace getit::domain
     class RawRequestBody: public RequestBody
     {
         public:
-            RawRequestBody(std::string contentTypeHeader);
+            RawRequestBody(std::string contentType);
             RawRequestBody();
             ~RawRequestBody();
 
+            void setContentType(std::string contentType);
             void setBody(std::string body);
             
             std::string getContentType() override;
@@ -20,7 +21,7 @@ namespace getit::domain
             size_t getSize() override;
 
         private:
-            std::string contentTypeHeader;
+            std::string contentType;
             std::string body;
 
             inline static const std::string DEF_CONTENT_TYPE = "text/plain";
