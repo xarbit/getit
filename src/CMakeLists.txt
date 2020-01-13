@@ -14,6 +14,7 @@ set(SOURCEFILES
     domain/CppRestRequest.cpp
     domain/FormdataRequestBody.cpp
     domain/Request.cpp
+    domain/RequestFactory.cpp
     domain/RawRequestBody.cpp
 
     gui/widget/BodyWidget/BodyWidget.cpp
@@ -31,6 +32,7 @@ set(HEADERFILES
     domain/RawRequestBody.hpp
     domain/Request.hpp
     domain/RequestBody.hpp
+    domain/RequestFactory.hpp
     domain/Response.hpp
 
     gui/widget/BodyWidget/Body.hpp

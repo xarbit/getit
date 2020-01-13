@@ -1,7 +1,9 @@
 #pragma once
 
+#include <QPushButton>
 #include <QMainWindow>
 
+#include "domain/RequestFactory.hpp"
 #include "gui/widget/HeaderWidget/HeaderWidget.hpp"
 #include "gui/widget/BodyWidget/BodyWidget.hpp"
 #include "gui/widget/ResponseWidget/ResponseWidget.hpp"
@@ -17,11 +19,12 @@ namespace getit::gui::window
         Q_OBJECT
 
         public:
-            MainWindow(QWidget* parent = nullptr);
+            MainWindow(getit::domain::RequestFactory* requestFactory, QWidget* parent = nullptr);
             ~MainWindow();
 
         private:
             Ui::MainWindow* ui;
+            getit::domain::RequestFactory* requestFactory;
 
             widget::HeaderWidget* headerController;
             widget::BodyWidget* bodyController;

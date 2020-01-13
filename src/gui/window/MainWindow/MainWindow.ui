@@ -18,7 +18,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QComboBox" name="cb_method">
+       <widget class="QComboBox" name="method">
         <property name="editable">
          <bool>true</bool>
         </property>
@@ -55,10 +55,10 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="le_uri"/>
+       <widget class="QLineEdit" name="uri"/>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_send">
+       <widget class="QPushButton" name="send">
         <property name="text">
          <string>Send</string>
         </property>

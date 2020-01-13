@@ -18,3 +18,8 @@ BodyWidget::~BodyWidget()
 {
     delete ui;
 }
+
+getit::domain::RequestBody* BodyWidget::getRequestBody()
+{
+    return bodies.at(currentIndex())->getRequestBody();
+}

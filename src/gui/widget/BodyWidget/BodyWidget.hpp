@@ -22,6 +22,8 @@ namespace getit::gui::widget
             BodyWidget(QWidget* parent = nullptr);
             ~BodyWidget();
 
+            getit::domain::RequestBody* getRequestBody();
+
         private:
             Ui::BodyWidget* ui;
 

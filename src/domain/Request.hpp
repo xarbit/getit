@@ -16,6 +16,7 @@ namespace getit::domain
             ~Request();
 
             void addHeader(std::string header, std::string value);
+            void addHeaders(std::map<std::string, std::string> headers);
             void setBody(RequestBody* body);
             virtual void send(std::function<void(Response response)> callback) = 0;
 

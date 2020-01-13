@@ -14,3 +14,10 @@ HeaderWidget::~HeaderWidget()
 {
     delete ui;
 }
+
+std::map<std::string, std::string> HeaderWidget::getHeaders()
+{
+    return {
+        "test", "test"
+    };
+}
