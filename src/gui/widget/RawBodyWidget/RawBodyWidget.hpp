@@ -4,27 +4,27 @@
 
 #include "domain/RawRequestBody.hpp"
 #include "domain/RequestBody.hpp"
-#include "gui/RequestBody/BodyWidget.hpp"
+#include "gui/widget/BodyWidget/Body.hpp"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class RawRequestBodyWidget; }
+namespace Ui { class RawBodyWidget; }
 QT_END_NAMESPACE
 
-namespace getit::gui::requestbody
+namespace getit::gui::widget
 {
-    class RawRequestBodyWidget: public BodyWidget
+    class RawBodyWidget: public Body
     {
         Q_OBJECT
 
         public:
-            RawRequestBodyWidget(QWidget* parent = nullptr);
-            ~RawRequestBodyWidget();
+            RawBodyWidget(QWidget* parent = nullptr);
+            ~RawBodyWidget();
 
             std::string getName() override;
             getit::domain::RequestBody* getRequestBody() override;
 
         private:
-            Ui::RawRequestBodyWidget* ui;
+            Ui::RawBodyWidget* ui;
             
             getit::domain::RawRequestBody body;
             const std::string name = "Raw";

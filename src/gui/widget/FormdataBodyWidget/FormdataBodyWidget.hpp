@@ -4,27 +4,27 @@
 
 #include "domain/FormdataRequestBody.hpp"
 #include "domain/RequestBody.hpp"
-#include "gui/RequestBody/BodyWidget.hpp"
+#include "gui/widget/BodyWidget/Body.hpp"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class FormdataRequestBodyWidget; }
+namespace Ui { class FormdataBodyWidget; }
 QT_END_NAMESPACE
 
-namespace getit::gui::requestbody
+namespace getit::gui::widget
 {
-    class FormdataRequestBodyWidget: public BodyWidget
+    class FormdataBodyWidget: public Body
     {
         Q_OBJECT
         
         public:
-            FormdataRequestBodyWidget(QWidget* parent = nullptr);
-            ~FormdataRequestBodyWidget();
+            FormdataBodyWidget(QWidget* parent = nullptr);
+            ~FormdataBodyWidget();
 
             std::string getName() override;
             getit::domain::RequestBody* getRequestBody() override;
 
         private:
-            Ui::FormdataRequestBodyWidget* ui;
+            Ui::FormdataBodyWidget* ui;
 
             static std::string generateBoundary();
             getit::domain::FormdataRequestBody body;

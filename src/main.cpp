@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "gui/MainWindow/MainWindow.hpp"
+#include "gui/window/MainWindow/MainWindow.hpp"
 
 #include "domain/CppRestRequest.hpp"
 #include "domain/RawRequestBody.hpp"
@@ -8,7 +8,7 @@
 int main(int argc, char** argv)
 {
     QApplication a(argc, argv);
-    getit::gui::MainWindow w;
+    getit::gui::window::MainWindow w;
     w.show();
 
     auto request = new getit::domain::CppRestRequest("GET", "https://google.com");

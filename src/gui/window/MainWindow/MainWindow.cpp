@@ -1,16 +1,16 @@
-#include "gui/MainWindow/MainWindow.hpp"
+#include "gui/window/MainWindow/MainWindow.hpp"
 #include "./ui_MainWindow.h"
 
 #include <iostream>
 
-using namespace getit::gui;
+using namespace getit::gui::window;
 
 MainWindow::MainWindow(QWidget* parent):
     QMainWindow(parent),
     ui(new Ui::MainWindow()),
-    headerController(new HeaderControllerWidget(this)),
-    bodyController(new requestbody::BodyControllerWidget(this)),
-    responseController(new ResponseControllerWidget(this))
+    headerController(new widget::HeaderWidget(this)),
+    bodyController(new widget::BodyWidget(this)),
+    responseController(new widget::ResponseWidget(this))
 {
     ui->setupUi(this);
 

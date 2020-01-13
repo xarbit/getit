@@ -5,13 +5,13 @@
 
 #include "domain/RequestBody.hpp"
 
-namespace getit::gui::requestbody
+namespace getit::gui::widget
 {
-    struct BodyWidget: public QWidget
+    struct Body: public QWidget
     {
         public:
-            BodyWidget(QWidget* parent): QWidget(parent) {}
-            virtual ~BodyWidget() = default;
+            Body(QWidget* parent): QWidget(parent) {}
+            virtual ~Body() = default;
 
             virtual std::string getName() = 0;
             virtual getit::domain::RequestBody* getRequestBody() = 0;

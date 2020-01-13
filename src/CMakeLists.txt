@@ -15,12 +15,14 @@ set(SOURCEFILES
     domain/FormdataRequestBody.cpp
     domain/Request.cpp
     domain/RawRequestBody.cpp
-    gui/HeaderWidget/HeaderControllerWidget.cpp
-    gui/MainWindow/MainWindow.cpp
-    gui/RequestBody/FormdataRequestBody/FormdataRequestBodyWidget.cpp
-    gui/RequestBody/RawRequestBody/RawRequestBodyWidget.cpp
-    gui/RequestBody/BodyControllerWidget.cpp
-    gui/ResponseControllerWidget/ResponseControllerWidget.cpp
+
+    gui/widget/BodyWidget/BodyWidget.cpp
+    gui/widget/FormdataBodyWidget/FormdataBodyWidget.cpp
+    gui/widget/HeaderWidget/HeaderWidget.cpp
+    gui/widget/RawBodyWidget/RawBodyWidget.cpp
+    gui/widget/ResponseWidget/ResponseWidget.cpp
+
+    gui/window/MainWindow/MainWindow.cpp
 )
 
 set(HEADERFILES
@@ -30,13 +32,15 @@ set(HEADERFILES
     domain/Request.hpp
     domain/RequestBody.hpp
     domain/Response.hpp
-    gui/HeaderWidget/HeaderControllerWidget.hpp
-    gui/MainWindow/MainWindow.hpp
-    gui/RequestBody/FormdataRequestBody/FormdataRequestBodyWidget.hpp
-    gui/RequestBody/RawRequestBody/RawRequestBodyWidget.hpp
-    gui/RequestBody/BodyControllerWidget.hpp
-    gui/RequestBody/BodyWidget.hpp
-    gui/ResponseControllerWidget/ResponseControllerWidget.hpp
+
+    gui/widget/BodyWidget/Body.hpp
+    gui/widget/BodyWidget/BodyWidget.hpp
+    gui/widget/FormdataBodyWidget/FormdataBodyWidget.hpp
+    gui/widget/HeaderWidget/HeaderWidget.hpp
+    gui/widget/RawBodyWidget/RawBodyWidget.hpp
+    gui/widget/ResponseWidget/ResponseWidget.hpp
+
+    gui/window/MainWindow/MainWindow.hpp
 )
 
 add_executable(getit

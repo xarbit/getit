@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RawRequestBodyWidget</class>
- <widget class="QWidget" name="RawRequestBodyWidget">
+ <class>RawBodyWidget</class>
+ <widget class="QWidget" name="RawBodyWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
