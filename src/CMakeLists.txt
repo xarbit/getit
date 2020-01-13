@@ -20,6 +20,7 @@ set(SOURCEFILES
     gui/RequestBody/FormdataRequestBody/FormdataRequestBodyWidget.cpp
     gui/RequestBody/RawRequestBody/RawRequestBodyWidget.cpp
     gui/RequestBody/BodyControllerWidget.cpp
+    gui/ResponseControllerWidget/ResponseControllerWidget.cpp
 )
 
 set(HEADERFILES
@@ -35,6 +36,7 @@ set(HEADERFILES
     gui/RequestBody/RawRequestBody/RawRequestBodyWidget.hpp
     gui/RequestBody/BodyControllerWidget.hpp
     gui/RequestBody/BodyWidget.hpp
+    gui/ResponseControllerWidget/ResponseControllerWidget.hpp
 )
 
 add_executable(getit
