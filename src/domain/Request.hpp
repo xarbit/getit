@@ -13,7 +13,7 @@ namespace getit::domain
     {
         public:
             Request(std::string method, std::string uri);
-            ~Request();
+            virtual ~Request() = default;
 
             void addHeader(std::string header, std::string value);
             void addHeaders(std::map<std::string, std::string> headers);

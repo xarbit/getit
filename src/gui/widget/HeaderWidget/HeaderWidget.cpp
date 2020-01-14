@@ -17,7 +17,7 @@ HeaderWidget::~HeaderWidget()
 
 std::map<std::string, std::string> HeaderWidget::getHeaders()
 {
-    return {
-        "test", "test"
-    };
+    std::map<std::string, std::string> map;
+
+    return map;
 }

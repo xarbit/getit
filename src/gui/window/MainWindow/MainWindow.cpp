@@ -1,8 +1,6 @@
 #include "gui/window/MainWindow/MainWindow.hpp"
 #include "./ui_MainWindow.h"
 
-#include <iostream>
-
 using namespace getit::gui::window;
 
 MainWindow::MainWindow(getit::domain::RequestFactory* requestFactory, QWidget* parent):
@@ -23,17 +21,14 @@ MainWindow::MainWindow(getit::domain::RequestFactory* requestFactory, QWidget* p
         const std::string method = ui->method->currentText().toStdString();
         const std::string uri = ui->uri->text().toStdString();
         const auto headers = headerController->getHeaders();
-        const auto body = bodyController->getRequestBody();
-        const auto request = requestFactory->getRequest();
+
+        auto body = bodyController->getRequestBody();
+        auto request = requestFactory->getRequest(method, uri);
 
         request->addHeaders(headers);
         request->setBody(body);
         request->send([=](getit::domain::Response response) {
             responseController->setResponse(response);
-
-            std::cout << "response: " << response.body << std::endl;
-
-            delete request;
         });
     });
 }

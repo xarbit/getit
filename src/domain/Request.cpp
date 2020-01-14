@@ -9,11 +9,6 @@ Request::Request(std::string method, std::string uri):
 
 }
 
-Request::~Request()
-{
-    delete this->body;
-}
-
 void Request::addHeader(std::string header, std::string value)
 {
     this->headers.insert({header, value});
@@ -21,7 +16,9 @@ void Request::addHeader(std::string header, std::string value)
 
 void Request::addHeaders(std::map<std::string, std::string> headers)
 {
-    this->headers.insert(headers.begin(), headers.end());
+    for (auto const& [header, value]: headers) {
+        this->addHeader(header, value);
+    }
 }
 
 void Request::setBody(RequestBody* body)

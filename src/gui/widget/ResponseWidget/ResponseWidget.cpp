@@ -17,5 +17,5 @@ ResponseWidget::~ResponseWidget()
 
 void ResponseWidget::setResponse(getit::domain::Response response)
 {
-
+    ui->body->setText(response.body.c_str());
 }

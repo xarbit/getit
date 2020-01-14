@@ -15,25 +15,25 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="headers">
+    <widget class="QGroupBox" name="headersGroupBox">
      <property name="title">
       <string>Headers</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
-       <widget class="QListView" name="listView"/>
+       <widget class="QTableWidget" name="headers"/>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="body">
+    <widget class="QGroupBox" name="bodyGroupBox">
      <property name="title">
       <string>Body</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QTextEdit" name="textEdit"/>
+       <widget class="QTextEdit" name="body"/>
       </item>
      </layout>
     </widget>
