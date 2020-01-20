@@ -31,7 +31,7 @@ void sendRequest(web::http::experimental::listener::http_listener* listener, get
 {
     listener->open().wait();
 
-    request->send([=](getit::domain::Response response) {
+    request->send([=](getit::domain::Response* response) {
         listener->close().wait();
     });
 }
@@ -142,8 +142,8 @@ SCENARIO("Newly constructed CppRestRequest", "[domain]")
 
         THEN("the response contains the status code given by the server")
         {
-            request->send([=](getit::domain::Response response) {
-                REQUIRE(response.statusCode == statusCode);
+            request->send([=](getit::domain::Response* response) {
+                REQUIRE(response->statusCode == statusCode);
 
                 listener->close().wait();
             });
@@ -168,8 +168,8 @@ SCENARIO("Newly constructed CppRestRequest", "[domain]")
 
         THEN("the response contains the headers given by the server")
         {
-            request->send([=](getit::domain::Response response) {
-                for (auto const& [key, value]: response.headers) {
+            request->send([=](getit::domain::Response* response) {
+                for (auto const& [key, value]: response->headers) {
                     if (key == header) {
                         REQUIRE(value == headerValue);
                     }
@@ -197,8 +197,8 @@ SCENARIO("Newly constructed CppRestRequest", "[domain]")
 
         THEN("the response contains the expected body given by the server")
         {
-            request->send([=](getit::domain::Response response) {
-                REQUIRE(response.body == responseBody);
+            request->send([=](getit::domain::Response* response) {
+                REQUIRE(response->body == responseBody);
 
                 listener->close().wait();
             });

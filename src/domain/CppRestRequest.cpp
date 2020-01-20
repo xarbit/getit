@@ -20,12 +20,12 @@ CppRestRequest::~CppRestRequest()
     
 }
 
-void CppRestRequest::send(std::function<void(Response response)> callback)
+void CppRestRequest::send(std::function<void(Response* response)> callback)
 {
     web::http::http_request request = this->buildRequest();  
 
     this->client.request(request).then([=](web::http::http_response restResponse) {
-        Response response = this->buildResponse(restResponse);
+        auto response = this->buildResponse(restResponse);
 
         callback(response);
     });
@@ -57,16 +57,16 @@ void CppRestRequest::addBodyToRequest(web::http::http_request* request)
     }
 }
 
-Response CppRestRequest::buildResponse(web::http::http_response restResponse)
+Response* CppRestRequest::buildResponse(web::http::http_response restResponse)
 {
-    Response response;
+    auto response = new Response();
     bool ignoreContentType = true;
         
-    response.body = restResponse.extract_string(ignoreContentType).get();
-    response.statusCode = restResponse.status_code();
+    response->body = restResponse.extract_string(ignoreContentType).get();
+    response->statusCode = restResponse.status_code();
 
     for (auto const& [header, value]: restResponse.headers()) {
-        response.headers.insert({header, value});
+        response->headers.insert({header, value});
     }
 
     return response;

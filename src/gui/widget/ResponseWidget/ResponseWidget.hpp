@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QWidget>
+#include <QListWidgetItem>
+#include <boost/format.hpp>
 
 #include "domain/Response.hpp"
 
@@ -18,9 +20,13 @@ namespace getit::gui::widget
             ResponseWidget(QWidget* parent = nullptr);
             ~ResponseWidget();
 
-            void setResponse(domain::Response response);
-
         private:
             Ui::ResponseWidget* ui;
+
+            void setBody(domain::Response* response);
+            void setHeaders(domain::Response* response);
+
+        public slots:
+            void setResponse(domain::Response* response);
     };
 }

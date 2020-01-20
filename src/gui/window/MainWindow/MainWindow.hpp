@@ -29,5 +29,8 @@ namespace getit::gui::window
             widget::HeaderWidget* headerController;
             widget::BodyWidget* bodyController;
             widget::ResponseWidget* responseController;
+
+        signals:
+            void requestSent(domain::Response* response);
     };
 }

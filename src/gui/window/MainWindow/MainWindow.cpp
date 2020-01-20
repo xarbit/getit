@@ -22,15 +22,17 @@ MainWindow::MainWindow(getit::domain::RequestFactory* requestFactory, QWidget* p
         const std::string uri = ui->uri->text().toStdString();
         const auto headers = headerController->getHeaders();
 
-        auto body = bodyController->getRequestBody();
-        auto request = requestFactory->getRequest(method, uri);
+        const auto body = bodyController->getRequestBody();
+        const auto request = requestFactory->getRequest(method, uri);
 
         request->addHeaders(headers);
         request->setBody(body);
-        request->send([=](getit::domain::Response response) {
-            responseController->setResponse(response);
+        request->send([=](getit::domain::Response* response) {
+            emit requestSent(response);
         });
     });
+
+    connect(this, &MainWindow::requestSent, responseController, &gui::widget::ResponseWidget::setResponse);
 }
 
 MainWindow::~MainWindow()
