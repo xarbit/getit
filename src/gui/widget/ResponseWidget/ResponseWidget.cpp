@@ -31,6 +31,8 @@ void ResponseWidget::setBody(getit::domain::Response* response)
 
 void ResponseWidget::setHeaders(getit::domain::Response* response)
 {
+    ui->headers->clear();
+
     for (const auto& [header, value] : response->headers) {
         auto format = boost::format("%1% → %2%") % header % value;
         auto widget = new QListWidgetItem(ui->headers);

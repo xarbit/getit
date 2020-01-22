@@ -1,10 +1,13 @@
 #pragma once
 
+#include <ctime>
 #include <string>
+#include <boost/format.hpp>
 
 #include "domain/FormdataRequestBody.hpp"
 #include "domain/RequestBody.hpp"
 #include "gui/widget/BodyWidget/Body.hpp"
+#include "gui/widget/FormdataWidget/FormdataWidget.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class FormdataBodyWidget; }
