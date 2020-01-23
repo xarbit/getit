@@ -70,10 +70,7 @@ std::string FormdataBodyWidget::generateBoundary()
 {
     auto now = std::chrono::system_clock::now();
     auto milis = now.time_since_epoch().count();
-
-    auto boundary = boost::format("------%1%") % milis;
-
-    std::cout << "boundary: " << boundary << std::endl;
+    auto boundary = boost::format("%1%") % milis;
 
     return boundary.str();
 }

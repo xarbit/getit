@@ -1,9 +1,10 @@
 #include <catch2/catch.hpp>
 #include <string>
+#include <boost/format.hpp>
 
 #include "domain/FormdataRequestBody.hpp"
 
-SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
+SCENARIO("Newly constructed FormdataRequestBody", "FormdataRequestBody")
 {
     std::string boundary = "--abc";
 
@@ -13,10 +14,13 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
 
         THEN("the contentType with the given boundary is returned")
         {
-            std::string contentType = "multipart/formdata; boundary=\"" + boundary + "\"";
+            auto expectedContentType = boost::format(
+                "multipart/form-data; boundary=\"%1%\""
+            ) % boundary;
+            
             std::string result = requestBody->getContentType();
 
-            REQUIRE(result == contentType);
+            REQUIRE(result == expectedContentType.str());
         }
     }
 
@@ -25,7 +29,10 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         auto requestBody = new getit::domain::FormdataRequestBody(boundary);
         std::string key = "MyBodyKey";
         std::string value = "This&is=My+Body@";
-        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value + "\r\n";
+    
+        auto expectedOutput = boost::format(
+            "--%1%\r\nContent-Disposition: form-data; name=\"%2%\"\r\n\r\n%3%\r\n\r\n--%1%--\r\n"
+        ) % boundary % key % value;
 
         requestBody->addElement(key, value);
 
@@ -33,7 +40,7 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         {
             std::string result = requestBody->getBody();
 
-            REQUIRE(result == expectedOutput);
+            REQUIRE(result == expectedOutput.str());
         }
     }
 
@@ -42,7 +49,10 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         auto requestBody = new getit::domain::FormdataRequestBody(boundary);
         std::string key = "MyFile";
         std::string filePath = "../non-existing-file.non_existing_ext";
-        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"; filename=\"" + filePath + "\"\r\n\r\n\r\n";
+
+        auto expectedOutput = boost::format(
+            "--%1%\r\nContent-Disposition: form-data; name=\"%2%\"; filename=\"%3%\"\r\n\r\n\r\n\r\n--%1%--\r\n"
+        ) % boundary % key % filePath;
 
         requestBody->addFile(key, filePath);
 
@@ -50,14 +60,14 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         {
             std::string result = requestBody->getBody();
 
-            REQUIRE(result == expectedOutput);
+            REQUIRE(result == expectedOutput.str());
         }
 
         THEN("the size of the body should be the same as the size of the expected body")
         {
             size_t result = requestBody->getSize();
 
-            REQUIRE(result == expectedOutput.size());
+            REQUIRE(result == expectedOutput.str().size());
         }
     }
 
@@ -66,7 +76,10 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         auto requestBody = new getit::domain::FormdataRequestBody(boundary);
         std::string key = "MyFile";
         std::string filePath = "./tst_file.txt";
-        std::string expectedOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + key + "\"; filename=\"" + filePath + "\"\r\n\r\ncontent\r\n";
+
+        auto expectedOutput = boost::format(
+            "--%1%\r\nContent-Disposition: form-data; name=\"%2%\"; filename=\"%3%\"\r\n\r\ncontent\r\n\r\n--%1%--\r\n"
+        ) % boundary % key % filePath;
 
         requestBody->addFile(key, filePath);
 
@@ -74,14 +87,14 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         {
             std::string result = requestBody->getBody();
 
-            REQUIRE(result == expectedOutput);
+            REQUIRE(result == expectedOutput.str());
         }
 
         THEN("the size of the body should be the same as the size of the expected body")
         {
             size_t result = requestBody->getSize();
 
-            REQUIRE(result == expectedOutput.size());
+            REQUIRE(result == expectedOutput.str().size());
         }
     }
 
@@ -91,10 +104,20 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
 
         std::string elementKey = "MyBodyKey";
         std::string elementValue = "This&is=My+Body@";
-        std::string expectedElementOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + elementKey + "\"\r\n\r\n" + elementValue + "\r\n";
         std::string fileKey = "MyFile";
         std::string filePath = "./tst_file.txt";
-        std::string expectedFileOutput = boundary + "\r\nContent-Disposition: form-data; name=\"" + fileKey + "\"; filename=\"" + filePath + "\"\r\n\r\ncontent\r\n";
+
+        auto expectedElementOutput = boost::format(
+            "--%1%\r\nContent-Disposition: form-data; name=\"%2%\"\r\n\r\n%3%\r\n"
+        ) % boundary % elementKey % elementValue;
+
+        auto expectedFileOutput = boost::format(
+            "--%1%\r\nContent-Disposition: form-data; name=\"%2%\"; filename=\"%3%\"\r\n\r\ncontent\r\n"
+        ) % boundary % fileKey % filePath;
+
+        auto expectedOutput = boost::format(
+            "%1%%2%\r\n--%3%--\r\n"
+        ) % expectedFileOutput % expectedElementOutput % boundary;
 
         requestBody->addFile(fileKey, filePath);
         requestBody->addElement(elementKey, elementValue);
@@ -103,14 +126,14 @@ SCENARIO("Newly constructed FormdataRequestBody", "[domain]")
         {
             std::string result = requestBody->getBody();
 
-            REQUIRE(result == (expectedFileOutput + expectedElementOutput));
+            REQUIRE(result == expectedOutput.str());
         }
 
         THEN("the size of the body should be the sizes of the expected outputs combined")
         {
             size_t result = requestBody->getSize();
 
-            REQUIRE(result == (expectedFileOutput.size() + expectedElementOutput.size()));
+            REQUIRE(result == expectedOutput.str().size());
         }
     }
 }

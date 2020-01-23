@@ -3,7 +3,7 @@
 
 #include "domain/RawRequestBody.hpp"
 
-SCENARIO("Newly constructed RawRequestBody", "[domain]")
+SCENARIO("Newly constructed RawRequestBody")
 {
 
     WHEN("The contentType is given through the constructor")
