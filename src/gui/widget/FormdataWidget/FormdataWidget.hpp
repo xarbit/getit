@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QFileDialog>
 #include <QWidget>
 #include <string>
 

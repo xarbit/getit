@@ -17,7 +17,11 @@ FormdataWidget::FormdataWidget(QWidget* parent):
     });
 
     connect(ui->browse, &QPushButton::pressed, this, [=]() {
-        // Open file browser
+        auto fileName = QFileDialog::getOpenFileUrl(this);
+
+        if (!fileName.isEmpty()) {
+            ui->file->setText(fileName.toString());
+        }
     });
 
     ui->type->setCurrentIndex(textTypeIndex);
