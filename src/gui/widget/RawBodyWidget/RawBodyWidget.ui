@@ -13,7 +13,10 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>5</number>
+   </property>
    <property name="leftMargin">
     <number>5</number>
    </property>
@@ -26,33 +29,18 @@
    <property name="bottomMargin">
     <number>5</number>
    </property>
-   <property name="spacing">
-    <number>5</number>
-   </property>
-   <item row="0" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <property name="spacing">
-      <number>5</number>
+   <item>
+    <widget class="QTextEdit" name="rawBody"/>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="contentType">
+     <property name="autoFillBackground">
+      <bool>false</bool>
      </property>
-     <property name="leftMargin">
-      <number>5</number>
+     <property name="placeholderText">
+      <string>Content-Type (e.g.: application/json)</string>
      </property>
-     <property name="topMargin">
-      <number>5</number>
-     </property>
-     <property name="rightMargin">
-      <number>5</number>
-     </property>
-     <property name="bottomMargin">
-      <number>5</number>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="contentType"/>
-     </item>
-     <item>
-      <widget class="QTextEdit" name="rawBody"/>
-     </item>
-    </layout>
+    </widget>
    </item>
   </layout>
  </widget>
