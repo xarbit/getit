@@ -39,7 +39,7 @@ set(HEADERFILES
     gui/widget/BodyWidget/Body.hpp
     gui/widget/BodyWidget/BodyWidget.hpp
     gui/widget/FormdataBodyWidget/FormdataBodyWidget.hpp
-    gui/widget/FormdataWidget/FormdataWidget.hpp
+    gui/widget/FormdataWidget/FormdataWidget.hdpp
     gui/widget/HeaderWidget/HeaderWidget.hpp
     gui/widget/RawBodyWidget/RawBodyWidget.hpp
     gui/widget/ResponseWidget/ResponseWidget.hpp
