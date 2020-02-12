@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 
+#include "gui/widget/HeaderWidget/HeaderWidget.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class HeadersWidget; }
 QT_END_NAMESPACE
