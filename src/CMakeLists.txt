@@ -20,7 +20,7 @@ set(SOURCEFILES
     gui/widget/BodyWidget/BodyWidget.cpp
     gui/widget/FormdataBodyWidget/FormdataBodyWidget.cpp
     gui/widget/FormdataWidget/FormdataWidget.cpp
-    gui/widget/HeaderWidget/HeaderWidget.cpp
+    gui/widget/HeadersWidget/HeadersWidget.cpp
     gui/widget/RawBodyWidget/RawBodyWidget.cpp
     gui/widget/ResponseWidget/ResponseWidget.cpp
 
@@ -40,7 +40,7 @@ set(HEADERFILES
     gui/widget/BodyWidget/BodyWidget.hpp
     gui/widget/FormdataBodyWidget/FormdataBodyWidget.hpp
     gui/widget/FormdataWidget/FormdataWidget.hpp
-    gui/widget/HeaderWidget/HeaderWidget.hpp
+    gui/widget/HeadersWidget/HeadersWidget.hpp
     gui/widget/RawBodyWidget/RawBodyWidget.hpp
     gui/widget/ResponseWidget/ResponseWidget.hpp
 

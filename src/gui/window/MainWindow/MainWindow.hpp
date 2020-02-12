@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 #include "domain/RequestFactory.hpp"
-#include "gui/widget/HeaderWidget/HeaderWidget.hpp"
+#include "gui/widget/HeadersWidget/HeadersWidget.hpp"
 #include "gui/widget/BodyWidget/BodyWidget.hpp"
 #include "gui/widget/ResponseWidget/ResponseWidget.hpp"
 
@@ -26,7 +26,7 @@ namespace getit::gui::window
             Ui::MainWindow* ui;
             getit::domain::RequestFactory* requestFactory;
 
-            widget::HeaderWidget* headerController;
+            widget::HeadersWidget* headersController;
             widget::BodyWidget* bodyController;
             widget::ResponseWidget* responseController;
 

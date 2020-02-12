@@ -7,20 +7,20 @@ MainWindow::MainWindow(getit::domain::RequestFactory* requestFactory, QWidget* p
     QMainWindow(parent),
     ui(new Ui::MainWindow()),
     requestFactory(requestFactory),
-    headerController(new widget::HeaderWidget(this)),
+    headersController(new widget::HeadersWidget(this)),
     bodyController(new widget::BodyWidget(this)),
     responseController(new widget::ResponseWidget(this))
 {
     ui->setupUi(this);
 
-    ui->headers->addWidget(headerController);
+    ui->headers->addWidget(headersController);
     ui->body->addWidget(bodyController);
     ui->response->addWidget(responseController);
 
     connect(ui->send, &QPushButton::clicked, this, [=]() {
         const std::string method = ui->method->currentText().toStdString();
         const std::string uri = ui->uri->text().toStdString();
-        const auto headers = headerController->getHeaders();
+        const auto headers = headersController->getHeaders();
 
         const auto body = bodyController->getRequestBody();
         const auto request = requestFactory->getRequest(method, uri);
@@ -37,7 +37,7 @@ MainWindow::MainWindow(getit::domain::RequestFactory* requestFactory, QWidget* p
 
 MainWindow::~MainWindow()
 {
-    delete headerController;
+    delete headersController;
     delete bodyController;
     delete responseController;
     delete ui;

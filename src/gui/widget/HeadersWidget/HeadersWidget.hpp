@@ -5,22 +5,22 @@
 #include <map>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class HeaderWidget; }
+namespace Ui { class HeadersWidget; }
 QT_END_NAMESPACE
 
 namespace getit::gui::widget
 {
-    class HeaderWidget: public QWidget
+    class HeadersWidget: public QWidget
     {
         Q_OBJECT
 
         public:
-            HeaderWidget(QWidget* parent = nullptr);
-            ~HeaderWidget();
+            HeadersWidget(QWidget* parent = nullptr);
+            ~HeadersWidget();
 
             std::map<std::string, std::string> getHeaders();
 
         private:
-            Ui::HeaderWidget* ui;
+            Ui::HeadersWidget* ui;
     };
 }
