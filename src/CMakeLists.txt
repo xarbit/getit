@@ -26,6 +26,8 @@ set(SOURCEFILES
     gui/widget/ResponseWidget/ResponseWidget.cpp
 
     gui/window/MainWindow/MainWindow.cpp
+
+    repository/FileRepository.cpp
 )
 
 set(HEADERFILES
@@ -47,6 +49,9 @@ set(HEADERFILES
     gui/widget/ResponseWidget/ResponseWidget.hpp
 
     gui/window/MainWindow/MainWindow.hpp
+
+    repository/FileRepository.hpp
+    repository/Repository.hpp
 )
 
 add_executable(getit
