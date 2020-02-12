@@ -25,8 +25,6 @@ MainWindow::MainWindow(getit::domain::RequestFactory* requestFactory, QWidget* p
         const auto body = bodyController->getRequestBody();
         const auto request = requestFactory->getRequest(method, uri);
 
-        std::cout << body->getBody() << std::endl;
-
         request->addHeaders(headers);
         request->setBody(body);
         request->send([=](getit::domain::Response* response) {
