@@ -14,8 +14,18 @@ set(SOURCEFILES
     domain/CppRestRequest.cpp
     domain/FormdataRequestBody.cpp
     domain/Request.cpp
+    domain/RequestFactory.cpp
     domain/RawRequestBody.cpp
-    gui/MainWindow/MainWindow.cpp
+
+    gui/widget/BodyWidget/BodyWidget.cpp
+    gui/widget/FormdataBodyWidget/FormdataBodyWidget.cpp
+    gui/widget/FormdataWidget/FormdataWidget.cpp
+    gui/widget/HeadersWidget/HeadersWidget.cpp
+    gui/widget/HeaderWidget/HeaderWidget.cpp
+    gui/widget/RawBodyWidget/RawBodyWidget.cpp
+    gui/widget/ResponseWidget/ResponseWidget.cpp
+
+    gui/window/MainWindow/MainWindow.cpp
 )
 
 set(HEADERFILES
@@ -24,18 +34,24 @@ set(HEADERFILES
     domain/RawRequestBody.hpp
     domain/Request.hpp
     domain/RequestBody.hpp
+    domain/RequestFactory.hpp
     domain/Response.hpp
-    gui/MainWindow/MainWindow.hpp
-)
 
-set(UIFILES
-    gui/MainWindow/MainWindow.ui
+    gui/widget/BodyWidget/Body.hpp
+    gui/widget/BodyWidget/BodyWidget.hpp
+    gui/widget/FormdataBodyWidget/FormdataBodyWidget.hpp
+    gui/widget/FormdataWidget/FormdataWidget.hpp
+    gui/widget/HeadersWidget/HeadersWidget.hpp
+    gui/widget/HeadersWidget/HeadersWidget.cpp
+    gui/widget/RawBodyWidget/RawBodyWidget.hpp
+    gui/widget/ResponseWidget/ResponseWidget.hpp
+
+    gui/window/MainWindow/MainWindow.hpp
 )
 
 add_executable(getit
     ${HEADERFILES}
-    ${SOURCEFILES}
-    ${UIFILES}
+    ${SOURCEFILES}  
 )
 
 # Libraries

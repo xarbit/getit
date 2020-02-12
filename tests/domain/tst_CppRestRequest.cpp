@@ -31,7 +31,7 @@ void sendRequest(web::http::experimental::listener::http_listener* listener, get
 {
     listener->open().wait();
 
-    request->send([=](getit::domain::Response response) {
+    request->send([=](getit::domain::Response* response) {
         listener->close().wait();
     });
 }
@@ -49,7 +49,7 @@ bool validateHeader(web::http::http_headers headers, std::string expectedHeader,
     return false;
 }
 
-SCENARIO("Newly constructed CppRestRequest", "[domain]")
+SCENARIO("Newly constructed CppRestRequest")
 {
     WHEN("a GET request is being sent")
     {
@@ -102,7 +102,12 @@ SCENARIO("Newly constructed CppRestRequest", "[domain]")
         std::string file = "file";
         std::string filePath = "tst_file.txt";
         std::string boundary = "-----**";
-        std::string expectedContent = boundary + "\r\nContent-Disposition: form-data; name=\"" + element + "\"\r\n\r\n" + elementValue +"\r\n" + boundary + "\r\nContent-Disposition: form-data; name=\"" + file + "\"; filename=\"" + filePath + "\"\r\n\r\ncontent\r\n";
+
+        auto expectedContent = boost::format(
+            "--%1%\r\nContent-Disposition: form-data; name=\"%2%\"\r\n\r\n%3%\r\n"
+            "--%1%\r\nContent-Disposition: form-data; name=\"%4%\"; filename=\"%5%\"\r\n\r\ncontent\r\n\r\n--%1%--\r\n"
+        ) % boundary % element % elementValue % file % filePath;
+
         auto listener = new web::http::experimental::listener::http_listener(uri);
         auto request = new getit::domain::CppRestRequest("POST", uri);
         auto requestBody = new getit::domain::FormdataRequestBody(boundary);
@@ -118,7 +123,7 @@ SCENARIO("Newly constructed CppRestRequest", "[domain]")
             listener->support(web::http::methods::POST, [=](web::http::http_request request) {
                 std::string result = request.extract_string(true).get();
 
-                REQUIRE(result == expectedContent);
+                REQUIRE(result == expectedContent.str());
 
                 request.reply(web::http::status_codes::Accepted);
             });
@@ -142,8 +147,8 @@ SCENARIO("Newly constructed CppRestRequest", "[domain]")
 
         THEN("the response contains the status code given by the server")
         {
-            request->send([=](getit::domain::Response response) {
-                REQUIRE(response.statusCode == statusCode);
+            request->send([=](getit::domain::Response* response) {
+                REQUIRE(response->statusCode == statusCode);
 
                 listener->close().wait();
             });
@@ -168,8 +173,8 @@ SCENARIO("Newly constructed CppRestRequest", "[domain]")
 
         THEN("the response contains the headers given by the server")
         {
-            request->send([=](getit::domain::Response response) {
-                for (auto const& [key, value]: response.headers) {
+            request->send([=](getit::domain::Response* response) {
+                for (auto const& [key, value]: response->headers) {
                     if (key == header) {
                         REQUIRE(value == headerValue);
                     }
@@ -197,8 +202,8 @@ SCENARIO("Newly constructed CppRestRequest", "[domain]")
 
         THEN("the response contains the expected body given by the server")
         {
-            request->send([=](getit::domain::Response response) {
-                REQUIRE(response.body == responseBody);
+            request->send([=](getit::domain::Response* response) {
+                REQUIRE(response->body == responseBody);
 
                 listener->close().wait();
             });

@@ -14,7 +14,7 @@ namespace getit::domain
             CppRestRequest(std::string method, std::string uri, web::http::client::http_client client);
             ~CppRestRequest();
 
-            void send(std::function<void(Response response)> callback) override;
+            void send(std::function<void(Response* response)> callback) override;
 
         private:
             web::http::client::http_client client;
@@ -22,6 +22,6 @@ namespace getit::domain
             web::http::http_request buildRequest();
             void addHeadersToRequest(web::http::http_request* request);
             void addBodyToRequest(web::http::http_request* request);
-            Response buildResponse(web::http::http_response restResponse);
+            Response* buildResponse(web::http::http_response restResponse);
     };
 }
