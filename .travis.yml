@@ -24,9 +24,8 @@ addons:
       - cmake
 
 before_script:
-  - locate openssl/conf.h
   - cd build
-  - cmake ..
+  - cmake ../ -DOPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2t/lib
 
 script:
   - make getit_tests && ./bin/getit_tests
