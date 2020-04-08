@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.12)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(cpprestsdk REQUIRED)
