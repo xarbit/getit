@@ -25,6 +25,7 @@ addons:
 
 before_script:
   - cd build
+  - brew upgrade
   - cmake ../ -DOPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2t/lib
 
 script:
