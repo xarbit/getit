@@ -14,6 +14,7 @@ addons:
     packages:
       - libcpprest-dev
       - qt5-default
+      - qtdeclarative5-dev
       - cmake
       - libboost-all-dev
 
@@ -27,6 +28,7 @@ addons:
       - cmake
 
 before_script:
+  - if [ "$TRAVIS_OS_NAME" = "osx"    ]; then brew link qt5 --force                                                 ; fi
   - cd build
   - if [ "$TRAVIS_OS_NAME" = "osx"    ]; then cmake ../ -DOPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2t/lib  ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux"  ]; then cmake ../                                                             ; fi
