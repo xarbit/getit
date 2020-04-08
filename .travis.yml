@@ -3,9 +3,10 @@ language: cpp
 os:
   - osx
   - linux
-
-osx_image: xcode11.3
-dist: bionic
+  
+compiler:
+  - gcc
+  - clang
 
 addons:
   apt:
