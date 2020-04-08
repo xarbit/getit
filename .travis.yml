@@ -9,6 +9,7 @@ dist: bionic
 
 addons:
   apt:
+    update: true
     packages:
       - libcpprest-dev
       - qt5-default
@@ -16,6 +17,7 @@ addons:
       - libboost-all-dev
 
   homebrew:
+    update: true
     packages:
       - openssl
       - cpprestsdk
@@ -25,8 +27,8 @@ addons:
 
 before_script:
   - cd build
-  - brew upgrade
-  - cmake ../ -DOPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2t/lib
+  - if [ "$TRAVIS_OS_NAME" = "osx"    ]; then cmake ../ -DOPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2t/lib  ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux"  ]; then cmake ../                                                             ; fi
 
 script:
   - make getit_tests && ./bin/getit_tests
